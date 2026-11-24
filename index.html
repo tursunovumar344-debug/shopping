@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOMEN 360 — Ayollar moda olami</title>
+<meta name="description" content="WOMEN 360 — ayollar kiyimlari uchun zamonaviy onlayn marketplace.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+ --purple:#7139d5;
+ --purple2:#9b5de5;
+ --pink:#f7d9f0;
+ --bg:#fbf7fc;
+ --white:#fff;
+ --text:#211a2e;
+ --muted:#888092;
+ --border:#eee7f2;
+ --danger:#ed4d78;
+ --shadow:0 8px 30px rgba(65,35,90,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+header{
+ position:sticky;top:0;z-index:20;background:#fff;
+ box-shadow:0 2px 15px #4020500a;
+}
+.topbar{
+ max-width:1250px;margin:auto;padding:16px 22px;
+ display:flex;align-items:center;gap:22px;
+}
+.logo{font-size:25px;font-weight:800;color:var(--purple);white-space:nowrap}
+.logo span{color:#ed78b8}
+.search{
+ flex:1;display:flex;background:#f6effa;border-radius:15px;
+ padding:0 16px;align-items:center;gap:10px;
+}
+.search input{width:100%;padding:14px 0;border:0;outline:0;background:transparent}
+.header-actions{display:flex;gap:10px}
+.icon-btn{
+ background:#f7f1fa;width:43px;height:43px;border-radius:13px;
+ font-size:19px;position:relative;color:var(--text)
+}
+.count{
+ position:absolute;right:-5px;top:-5px;background:var(--danger);
+ color:white;border-radius:20px;font-size:10px;padding:3px 6px;
+}
+nav{
+ max-width:1250px;margin:auto;padding:0 22px 13px;
+ display:flex;gap:25px;overflow-x:auto;
+}
+nav button{background:none;color:#71687b;white-space:nowrap;font-size:13px}
+nav button:hover{color:var(--purple)}
+.container{max-width:1250px;margin:25px auto;padding:0 22px}
+.hero{
+ min-height:270px;border-radius:25px;overflow:hidden;
+ background:linear-gradient(110deg,#6532bd,#a45bdc 65%,#edb8d9);
+ display:flex;align-items:center;position:relative;color:white;
+ padding:40px;
+}
+.hero-content{max-width:440px;z-index:2}
+.hero small{background:#ffffff30;padding:8px 13px;border-radius:20px}
+.hero h1{font-size:40px;line-height:1.15;margin:22px 0 12px}
+.hero p{line-height:1.7;color:#f8eaff}
+.primary{
+ background:var(--purple);color:white;border-radius:12px;
+ padding:13px 20px;font-weight:700;
+}
+.hero .primary{background:white;color:var(--purple);margin-top:20px}
+.hero img{
+ position:absolute;right:30px;bottom:-40px;width:330px;height:300px;
+ object-fit:cover;object-position:top;border-radius:160px 160px 0 0;
+ mix-blend-mode:normal;
+}
+.section-head{
+ display:flex;align-items:center;justify-content:space-between;
+ margin:32px 0 18px;
+}
+.section-head h2{font-size:21px}
+.section-head button{background:none;color:var(--purple);font-weight:600}
+.categories{
+ display:grid;grid-template-columns:repeat(8,1fr);gap:13px;
+}
+.category{
+ background:white;border:1px solid var(--border);border-radius:18px;
+ padding:15px 7px;text-align:center;transition:.2s;
+}
+.category:hover,.category.active{
+ border-color:var(--purple);background:#f6edff;transform:translateY(-3px)
+}
+.category .emoji{font-size:29px;margin-bottom:9px}
+.category span{font-size:12px;font-weight:600}
+.promo{
+ margin-top:25px;border-radius:19px;padding:22px 25px;
+ background:linear-gradient(90deg,#f2c5ef,#e8caff);
+ display:flex;justify-content:space-between;align-items:center;
+}
+.promo h2{font-size:26px;color:#5724a7}
+.promo p{font-size:13px;margin-top:5px}
+.promo strong{font-size:35px;color:#5724a7}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.toolbar select{
+ border:1px solid var(--border);background:white;padding:11px 14px;
+ border-radius:12px;outline:0;
+}
+.products{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;
+}
+.card{
+ background:white;border-radius:18px;overflow:hidden;
+ border:1px solid var(--border);transition:.2s;position:relative;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.product-image{height:260px;position:relative;background:#f5edf5}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.discount{
+ position:absolute;left:11px;top:11px;background:var(--purple);
+ color:white;padding:6px 9px;border-radius:20px;font-size:11px;
+}
+.favorite{
+ position:absolute;right:11px;top:11px;width:36px;height:36px;
+ border-radius:50%;background:white;font-size:19px;color:#54485c;
+}
+.favorite.active{color:#ed4d78}
+.card-info{padding:14px}
+.card-info h3{font-size:14px;margin-bottom:8px}
+.price{font-weight:800;color:var(--purple);font-size:17px}
+.old-price{text-decoration:line-through;color:#aaa;font-size:12px;margin-left:7px}
+.rating{font-size:12px;color:#9b7a27;margin-top:8px}
+.shop{font-size:11px;color:var(--muted);margin-top:8px}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.small-btn{background:#f2e9fa;color:var(--purple);padding:9px 12px;border-radius:10px;font-weight:600}
+.empty{text-align:center;padding:50px;color:var(--muted);grid-column:1/-1}
+footer{margin-top:60px;background:#21152e;color:white;padding:40px 22px}
+.footer-inner{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer p{color:#c6b6d1;font-size:13px;margin-top:10px}
+.bottom-nav{
+ display:none;position:fixed;bottom:0;left:0;right:0;
+ background:white;z-index:30;box-shadow:0 -5px 25px #0000000d;
+ justify-content:space-around;padding:10px 5px calc(10px + env(safe-area-inset-bottom));
+}
+.bottom-nav button{background:none;color:#81758b;font-size:11px;display:flex;flex-direction:column;gap:4px;align-items:center}
+.bottom-nav button.active{color:var(--purple)}
+.bottom-nav b{font-size:20px}
+.overlay{
+ display:none;position:fixed;inset:0;background:#17102080;
+ z-index:50;align-items:center;justify-content:center;padding:15px;
+}
+.overlay.show{display:flex}
+.modal{
+ background:white;border-radius:22px;width:100%;max-width:650px;
+ max-height:90vh;overflow:auto;padding:25px;position:relative;
+}
+.close{position:absolute;right:17px;top:15px;background:#f5eff8;width:35px;height:35px;border-radius:50%;font-size:19px}
+.modal h2{margin-bottom:18px}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.detail img{width:100%;border-radius:16px;max-height:400px;object-fit:cover}
+.detail p{font-size:13px;line-height:1.7;color:var(--muted);margin:13px 0}
+.sizes{display:flex;gap:8px;margin:12px 0}
+.sizes button{padding:10px 13px;border:1px solid var(--border);border-radius:10px;background:white}
+.sizes button.active{border-color:var(--purple);background:#f3eaff;color:var(--purple)}
+.detail .price{font-size:23px}
+.add-btn{width:100%;margin-top:18px}
+.drawer{
+ position:fixed;right:-450px;top:0;bottom:0;width:min(420px,100%);
+ background:white;z-index:60;padding:25px;overflow:auto;
+ transition:.3s;box-shadow:-10px 0 40px #00000012;
+}
+.drawer.show{right:0}
+.cart-item{display:flex;gap:12px;border-bottom:1px solid var(--border);padding:15px 0}
+.cart-item img{width:75px;height:85px;object-fit:cover;border-radius:12px}
+.cart-item-info{flex:1}
+.cart-item-info p{font-size:12px;color:var(--muted);margin:6px 0}
+.qty{display:flex;align-items:center;gap:12px;margin-top:8px}
+.qty button{background:#f3eafa;border-radius:7px;padding:5px 10px}
+.total{border-top:1px solid var(--border);padding-top:20px;margin-top:20px}
+.total div{display:flex;justify-content:space-between;margin:12px 0}
+.form-group{margin:15px 0}
+.form-group label{font-size:13px;font-weight:600;display:block;margin-bottom:7px}
+.form-group input,.form-group select{
+ width:100%;padding:13px;border:1px solid var(--border);
+ border-radius:11px;outline-color:var(--purple)
+}
+.form-button{width:100%;margin-top:10px}
+.tabs{display:flex;gap:10px;margin:20px 0}
+.tabs button{padding:10px 15px;border-radius:10px;background:#f5eff8}
+.tabs button.active{background:var(--purple);color:white}
+.dashboard-box{background:#f8f1fc;border-radius:15px;padding:18px;margin:12px 0}
+.dashboard-box strong{font-size:22px;color:var(--purple)}
+@media(max-width:900px){
+ .categories{grid-template-columns:repeat(4,1fr)}
+ .products{grid-template-columns:repeat(3,1fr)}
+ .product-image{height:230px}
+}
+@media(max-width:600px){
+ .topbar{padding:12px;gap:10px;flex-wrap:wrap}
+ .logo{font-size:21px}
+ .search{order:3;flex-basis:100%}
+ nav{padding:0 13px 12px;gap:20px}
+ .container{padding:0 13px;margin:16px auto 85px}
+ .hero{min-height:205px;padding:20px;border-radius:18px}
+ .hero h1{font-size:27px;margin:15px 0 8px}
+ .hero p{font-size:12px;max-width:210px}
+ .hero img{width:145px;height:190px;right:-5px;bottom:-15px}
+ .hero .primary{padding:10px 13px;font-size:12px}
+ .categories{grid-template-columns:repeat(4,1fr);gap:8px}
+ .category{padding:11px 4px}
+ .category .emoji{font-size:23px}
+ .category span{font-size:10px}
+ .promo{padding:15px}
+ .promo h2{font-size:19px}
+ .promo strong{font-size:27px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-image{height:190px}
+ .card-info{padding:10px}
+ .card-info h3{font-size:12px}
+ .price{font-size:14px}
+ .old-price{font-size:10px}
+ .small-btn{font-size:10px;padding:8px}
+ .section-head h2{font-size:17px}
+ .bottom-nav{display:flex}
+ .detail{grid-template-columns:1fr}
+ .detail img{max-height:300px}
+ .modal{padding:20px}
+ footer{padding-bottom:95px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="topbar">
+  <div class="logo">WOMEN<span>360</span></div>
+  <div class="search">
+   <span>⌕</span>
+   <input id="searchInput" placeholder="Mahsulot qidirish...">
+   <span>☷</span>
+  </div>
+  <div class="header-actions">
+   <button class="icon-btn" onclick="openProfile()">♙</button>
+   <button class="icon-btn" onclick="openCart()">♡<span class="count" id="favCount">0</span></button>
+   <button class="icon-btn" onclick="openCart()">🛍<span class="count" id="cartCount">0</span></button>
+  </div>
+ </div>
+ <nav>
+  <button onclick="showHome()">Bosh sahifa</button>
+  <button onclick="filterCategory('Ko‘ylaklar')">Ko‘ylaklar</button>
+  <button onclick="filterCategory('Kostyumlar')">Kostyumlar</button>
+  <button onclick="filterCategory('Ustki kiyimlar')">Ustki kiyimlar</button>
+  <button onclick="filterCategory('Poyabzal')">Poyabzal</button>
+  <button onclick="filterCategory('Sumkalar')">Sumkalar</button>
+  <button onclick="showSeller()">Sotuvchi bo‘lish</button>
+ </nav>
+</header>
+
+<main class="container" id="homePage">
+ <section class="hero">
+  <div class="hero-content">
+   <small>YANGI MAVSUM · 2026</small>
+   <h1>Yangi kolleksiya</h1>
+   <p>Zamonaviy uslub va nafislikni WOMEN 360 bilan kashf eting.</p>
+   <button class="primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Xarid qilish →</button>
+  </div>
+  <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700" alt="Yangi ayollar kolleksiyasi">
+ </section>
+
+ <div class="section-head"><h2>Kategoriyalar</h2><button onclick="showAll()">Barchasi →</button></div>
+ <div class="categories" id="categories"></div>
+
+ <div class="promo">
+  <div><h2>Bugungi chegirmalar</h2><p>Sevimli kiyimlaringizni qulay narxda xarid qiling!</p></div>
+  <strong>−50%</strong>
+ </div>
+
+ <div class="section-head" id="catalog"><h2 id="catalogTitle">Siz uchun tavsiyalar</h2><button onclick="showAll()">Barchasi →</button></div>
+ <div class="toolbar">
+  <select id="sortSelect" onchange="renderProducts()">
+   <option value="default">Saralash</option>
+   <option value="low">Arzonidan</option>
+   <option value="high">Qimmatidan</option>
+   <option value="rating">Reyting bo‘yicha</option>
+  </select>
+  <select id="priceFilter" onchange="renderProducts()">
+   <option value="all">Barcha narxlar</option>
+   <option value="200000">200 000 so‘mgacha</option>
+   <option value="400000">400 000 so‘mgacha</option>
+   <option value="600000">600 000 so‘mgacha</option>
+  </select>
+ </div>
+ <div class="products" id="products"></div>
+</main>
+
+<main class="container" id="sellerPage" hidden>
+ <h2>Sotuvchi kabineti</h2>
+ <p style="color:var(--muted);margin:10px 0 20px">WOMEN 360 do‘koningizni boshqaring.</p>
+ <div class="dashboard-box"><strong id="sellerCount">0</strong><p>Mahsulotlar</p></div>
+ <div class="dashboard-box"><strong>Do‘koningizni rivojlantiring</strong><p>Mahsulotlaringizni xaridorlarga ko‘rsating.</p></div>
+ <h3>Mahsulot qo‘shish</h3>
+ <form id="productForm">
+  <div class="form-group"><label>Mahsulot nomi</label><input id="newName" required></div>
+  <div class="form-group"><label>Narxi (so‘m)</label><input id="newPrice" type="number" min="1" required></div>
+  <div class="form-group"><label>Kategoriya</label><select id="newCategory"><option>Ko‘ylaklar</option><option>Kostyumlar</option><option>Ustki kiyimlar</option><option>Shimlar</option><option>Poyabzal</option><option>Sumkalar</option><option>Aksessuarlar</option></select></div>
+  <div class="form-group"><label>Rasm manzili (URL)</label><input id="newImage" type="url" required placeholder="https://..."></div>
+  <button class="primary form-button">Mahsulotni joylash</button>
+ </form>
+</main>
+
+<main class="container" id="profilePage" hidden>
+ <h2>Mening profilim</h2>
+ <div class="dashboard-box"><strong>WOMEN 360</strong><p>Xush kelibsiz!</p></div>
+ <button class="primary" onclick="showSeller()">Sotuvchi kabinetiga o‘tish</button>
+ <div class="section-head"><h2>Buyurtmalarim</h2></div>
+ <div id="ordersList">Hozircha buyurtmalar yo‘q.</div>
+ <button class="small-btn" onclick="logout()" style="margin-top:20px">Mahalliy ma’lumotlarni tozalash</button>
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <div><div class="logo" style="color:white">WOMEN<span>360</span></div><p>Ayollar modasining yangi manzili.</p></div>
+  <div><strong>Biz haqimizda</strong><p>Biz bilan bog‘lanish</p><p>Yetkazib berish</p><p>Qaytarish shartlari</p></div>
+  <div><strong>Yordam</strong><p>Ko‘p beriladigan savollar</p><p>Maxfiylik siyosati</p><p>Foydalanish shartlari</p></div>
+ </div>
+</footer>
+
+<div class="bottom-nav">
+ <button class="active" onclick="showHome()"><b>⌂</b>Bosh sahifa</button>
+ <button onclick="showAll()"><b>▦</b>Katalog</button>
+ <button onclick="showFavorites()"><b>♡</b>Sevimlilar</button>
+ <button onclick="openCart()"><b>🛍</b>Savatcha</button>
+ <button onclick="openProfile()"><b>♙</b>Profil</button>
+</div>
+
+<div class="overlay" id="productOverlay" onclick="if(event.target===this)closeModal()">
+ <div class="modal">
+  <button class="close" onclick="closeModal()">×</button>
+  <div id="productDetail"></div>
+ </div>
+</div>
+
+<div class="drawer" id="cartDrawer">
+ <button class="close" onclick="closeCart()">×</button>
+ <h2 style="margin:25px 0">Savatcham</h2>
+ <div id="cartItems"></div>
+ <div class="total" id="cartTotal"></div>
+</div>
+
+<div class="overlay" id="profileOverlay">
+ <div class="modal">
+  <button class="close" onclick="document.getElementById('profileOverlay').classList.remove('show')">×</button>
+  <h2>WOMEN 360 profil</h2>
+  <p style="color:var(--muted)">Hozircha demo rejimida ishlamoqda.</p>
+  <div class="form-group"><label>Telefon raqamingiz</label><input id="phone" placeholder="+998 90 123 45 67"></div>
+  <button class="primary form-button" onclick="saveProfile()">Davom etish</button>
+ </div>
+</div>
+
+<script>
+const initialProducts=[
+ {id:1,name:"Elegant qora ko‘ylak",category:"Ko‘ylaklar",price:349000,old:499000,rating:4.8,reviews:124,shop:"Laziza Moda",sizes:["XS","S","M","L","XL"],image:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=700",description:"Zamonaviy va nafis qora ko‘ylak. Kundalik va maxsus tadbirlar uchun ajoyib tanlov."},
+ {id:2,name:"Bej rangli kostyum",category:"Kostyumlar",price:399000,old:499000,rating:4.9,reviews:28,shop:"Trend Style",sizes:["S","M","L","XL"],image:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=700",description:"Zamonaviy klassik kostyum. Yuqori sifatli material."},
+ {id:3,name:"Oq klassik bluzka",category:"Ko‘ylaklar",price:149000,old:199000,rating:4.7,reviews:17,shop:"Fashion Hub",sizes:["XS","S","M","L"],image:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=700",description:"Yengil va qulay oq bluzka."},
+ {id:4,name:"Binafsha ko‘ylak",category:"Ko‘ylaklar",price:299000,old:349000,rating:4.8,reviews:24,shop:"Moda Plus",sizes:["S","M","L","XL"],image:"https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=700",description:"Nafis dizayn va qulay bichim."},
+ {id:5,name:"Kundalik sumka",category:"Sumkalar",price:259000,old:319000,rating:4.6,reviews:15,shop:"Luxe Bags",sizes:["Universal"],image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700",description:"Har kungi foydalanish uchun zamonaviy sumka."},
+ {id:6,name:"Klassik tufli",category:"Poyabzal",price:289000,old:359000,rating:4.8,reviews:32,shop:"Shoes House",sizes:["36","37","38","39","40"],image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700",description:"Qulay va nafis klassik oyoq kiyim."},
+ {id:7,name:"Zamonaviy jaket",category:"Ustki kiyimlar",price:429000,old:520000,rating:4.7,reviews:21,shop:"Trend Style",sizes:["S","M","L"],image:"https://images.unsplash.com/photo-1548126032-079a0fb0099d?w=700",description:"Yangi mavsum uchun zamonaviy jaket."},
+ {id:8,name:"Ayollar jinsi shim",category:"Shimlar",price:219000,old:279000,rating:4.6,reviews:19,shop:"Fashion Hub",sizes:["S","M","L","XL"],image:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700",description:"Kundalik uslub uchun qulay jinsi shim."}
+];
+
+function load(key,fallback){
+ try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}
+}
+let products=load("w360_products",initialProducts);
+let cart=load("w360_cart",[]);
+let favorites=load("w360_favorites",[]);
+let orders=load("w360_orders",[]);
+let selectedProduct=null;
+let selectedSize="M";
+let currentCategory="all";
+
+const money=n=>new Intl.NumberFormat("uz-UZ").format(n)+" so‘m";
+const save=()=>{
+ localStorage.setItem("w360_products",JSON.stringify(products));
+ localStorage.setItem("w360_cart",JSON.stringify(cart));
+ localStorage.setItem("w360_favorites",JSON.stringify(favorites));
+ localStorage.setItem("w360_orders",JSON.stringify(orders));
+};
+
+const categoryData=[
+ ["Ko‘ylaklar","👗"],["Kostyumlar","🧥"],["Ustki kiyimlar","🧥"],["Shimlar","👖"],
+ ["Hijob kiyimlari","🧕"],["Poyabzal","👠"],["Sumkalar","👜"],["Aksessuarlar","💍"]
+];
+
+function renderCategories(){
+ document.getElementById("categories").innerHTML=categoryData.map(([name,icon])=>
+ `<button class="category ${currentCategory===name?"active":""}" onclick="filterCategory('${name}')"><div class="emoji">${icon}</div><span>${name}</span></button>`
+ ).join("");
+}
+function renderProducts(){
+ let list=[...products];
+ const q=document.getElementById("searchInput").value.toLowerCase();
+ const max=document.getElementById("priceFilter").value;
+ const sort=document.getElementById("sortSelect").value;
+ if(currentCategory!=="all")list=list.filter(p=>p.category===currentCategory);
+ if(q)list=list.filter(p=>(p.name+" "+p.category+" "+p.shop).toLowerCase().includes(q));
+ if(max!=="all")list=list.filter(p=>p.price<=Number(max));
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ if(sort==="rating")list.sort((a,b)=>b.rating-a.rating);
+ document.getElementById("catalogTitle").textContent=currentCategory==="all"?"Siz uchun tavsiyalar":currentCategory;
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`
+ <article class="card">
+  <div class="product-image" onclick="openProduct(${p.id})">
+   <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.src='https://placehold.co/400x500/f4e8f8/7139d5?text=WOMEN+360'">
+   ${p.old>p.price?`<span class="discount">-${Math.round((1-p.price/p.old)*100)}%</span>`:""}
+   <button class="favorite ${favorites.includes(p.id)?"active":""}" onclick="event.stopPropagation();toggleFavorite(${p.id})">${favorites.includes(p.id)?"♥":"♡"}</button>
+  </div>
+  <div class="card-info">
+   <h3>${escapeHtml(p.name)}</h3>
+   <span class="price">${money(p.price)}</span>
+   ${p.old>p.price?`<span class="old-price">${money(p.old)}</span>`:""}
+   <div class="rating">⭐ ${p.rating} (${p.reviews} sharh)</div>
+   <div class="card-bottom"><span class="shop">${escapeHtml(p.shop)}</span><button class="small-btn" onclick="openProduct(${p.id})">Ko‘rish</button></div>
+  </div>
+ </article>`).join(""):'<div class="empty">Mahsulot topilmadi 🌸</div>';
+ document.getElementById("favCount").textContent=favorites.length;
+ document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);
+}
+function escapeHtml(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function filterCategory(name){currentCategory=name;renderCategories();renderProducts();document.getElementById("catalog").scrollIntoView({behavior:"smooth"});}
+function showAll(){currentCategory="all";renderCategories();renderProducts();showHome();document.getElementById("catalog").scrollIntoView({behavior:"smooth"});}
+function showHome(){document.getElementById("homePage").hidden=false;document.getElementById("sellerPage").hidden=true;document.getElementById("profilePage").hidden=true;}
+function showSeller(){document.getElementById("homePage").hidden=true;document.getElementById("sellerPage").hidden=false;document.getElementById("profilePage").hidden=true;document.getElementById("sellerCount").textContent=products.length;window.scrollTo(0,0);}
+function openProfile(){document.getElementById("homePage").hidden=true;document.getElementById("sellerPage").hidden=true;document.getElementById("profilePage").hidden=false;renderOrders();window.scrollTo(0,0);}
+function toggleFavorite(id){
+ favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
+ save();renderProducts();
+}
+function showFavorites(){
+ currentCategory="all";
+ const list=products.filter(p=>favorites.includes(p.id));
+ document.getElementById("homePage").hidden=false;
+ document.getElementById("sellerPage").hidden=true;
+ document.getElementById("profilePage").hidden=true;
+ document.getElementById("catalogTitle").textContent="Sevimlilarim";
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`
+ <article class="card"><div class="product-image" onclick="openProduct(${p.id})"><img src="${escapeHtml(p.image)}"><button class="favorite active" onclick="event.stopPropagation();toggleFavorite(${p.id})">♥</button></div><div class="card-info"><h3>${escapeHtml(p.name)}</h3><span class="price">${money(p.price)}</span><div class="card-bottom"><span class="shop">${escapeHtml(p.shop)}</span><button class="small-btn" onclick="openProduct(${p.id})">Ko‘rish</button></div></div></article>`).join(""):'<div class="empty">Sevimli mahsulotlaringiz hali yo‘q.</div>';
+ window.scrollTo(0,0);
+}
+function openProduct(id){
+ selectedProduct=products.find(p=>p.id===id);
+ if(!selectedProduct)return;
+ selectedSize=selectedProduct.sizes[0]||"Universal";
+ const p=selectedProduct;
+ document.getElementById("productDetail").innerHTML=`
+ <div class="detail">
+ <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}">
+ <div>
+ <small style="color:var(--purple)">${escapeHtml(p.shop)}</small>
+ <h2 style="margin-top:12px">${escapeHtml(p.name)}</h2>
+ <div class="rating">⭐ ${p.rating} · ${p.reviews} sharh</div>
+ <p>${escapeHtml(p.description)}</p>
+ <div class="price">${money(p.price)}</div>
+ ${p.old>p.price?`<span class="old-price">${money(p.old)}</span>`:""}
+ <p><b>Razmerni tanlang:</b></p>
+ <div class="sizes">${p.sizes.map(s=>`<button class="${s===selectedSize?"active":""}" onclick="selectSize('${s}',this)">${s}</button>`).join("")}</div>
+ <button class="primary add-btn" onclick="addToCart(${p.id})">🛍 Savatchaga qo‘shish</button>
+ <button class="small-btn add-btn" onclick="buyNow(${p.id})">Hozir xarid qilish</button>
+ </div></div>`;
+ document.getElementById("productOverlay").classList.add("show");
+}
+function selectSize(size,btn){selectedSize=size;btn.parentElement.querySelectorAll("button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");}
+function closeModal(){document.getElementById("productOverlay").classList.remove("show");}
+function addToCart(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ const old=cart.find(x=>x.id===id&&x.size===selectedSize);
+ if(old)old.qty++;else cart.push({id,size:selectedSize,qty:1});
+ save();renderProducts();closeModal();openCart();
+}
+function buyNow(id){addToCart(id);}
+function openCart(){renderCart();document.getElementById("cartDrawer").classList.add("show");}
+function closeCart(){document.getElementById("cartDrawer").classList.remove("show");}
+function changeQty(id,size,delta){
+ const item=cart.find(x=>x.id===id&&x.size===size);
+ if(item){item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x!==item);}
+ save();renderCart();renderProducts();
+}
+function removeCart(id,size){cart=cart.filter(x=>!(x.id===id&&x.size===size));save();renderCart();renderProducts();}
+function renderCart(){
+ const el=document.getElementById("cartItems");
+ if(!cart.length){el.innerHTML='<div class="empty">Savatchangiz hozircha bo‘sh 🛍</div>';document.getElementById("cartTotal").innerHTML="";return;}
+ el.innerHTML=cart.map(item=>{
+  const p=products.find(x=>x.id===item.id);if(!p)return "";
+  return `<div class="cart-item"><img src="${escapeHtml(p.image)}"><div class="cart-item-info"><b>${escapeHtml(p.name)}</b><p>${item.size} · ${money(p.price)}</p><div class="qty"><button onclick="changeQty(${p.id},'${item.size}',-1)">−</button>${item.qty}<button onclick="changeQty(${p.id},'${item.size}',1)">+</button><button onclick="removeCart(${p.id},'${item.size}')">🗑</button></div></div></div>`;
+ }).join("");
+ const total=cart.reduce((sum,item)=>sum+(products.find(p=>p.id===item.id)?.price||0)*item.qty,0);
+ document.getElementById("cartTotal").innerHTML=`<div><span>Mahsulotlar jami</span><b>${money(total)}</b></div><div><span>Yetkazib berish</span><span>Keyin aniqlanadi</span></div><div><b>Jami</b><strong class="price">${money(total)}</strong></div><button class="primary form-button" onclick="checkout()">Buyurtma berish</button>`;
+}
+function checkout(){
+ if(!cart.length)return;
+ const total=cart.reduce((sum,item)=>sum+(products.find(p=>p.id===item.id)?.price||0)*item.qty,0);
+ const name=prompt("Ismingizni kiriting:");if(!name)return;
+ const phone=prompt("Telefon raqamingizni kiriting:");if(!phone)return;
+ const address=prompt("Yetkazib berish manzilingiz:");if(!address)return;
+ orders.push({id:Date.now(),name,phone,address,total,date:new Date().toLocaleDateString("uz-UZ"),status:"Yangi buyurtma",items:cart});
+ cart=[];save();renderCart();renderProducts();
+ alert("Demo buyurtmangiz saqlandi. Haqiqiy buyurtma uchun server va to‘lov tizimi ulanishi kerak.");
+}
+function renderOrders(){
+ const el=document.getElementById("ordersList");
+ el.innerHTML=orders.length?orders.map(o=>`<div class="dashboard-box"><b>Buyurtma #${o.id.toString().slice(-6)}</b><p>${o.date} · ${o.status}</p><strong>${money(o.total)}</strong></div>`).join(""):"Hozircha buyurtmalar yo‘q.";
+}
+function saveProfile(){
+ const phone=document.getElementById("phone").value.trim();
+ if(!phone){alert("Telefon raqamini kiriting");return;}
+ localStorage.setItem("w360_phone",phone);
+ document.getElementById("profileOverlay").classList.remove("show");
+ alert("Telefon raqami ushbu qurilmada saqlandi. Haqiqiy SMS tasdiqlash hali ulanmagan.");
+}
+function logout(){
+ if(!confirm("Ushbu brauzerdagi WOMEN 360 demo ma’lumotlari o‘chirilsinmi?"))return;
+ ["w360_products","w360_cart","w360_favorites","w360_orders","w360_phone"].forEach(k=>localStorage.removeItem(k));
+ location.reload();
+}
+document.getElementById("searchInput").addEventListener("input",renderProducts);
+document.getElementById("productForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const product={
+  id:Date.now(),name:document.getElementById("newName").value.trim(),
+  price:Number(document.getElementById("newPrice").value),
+  old:Number(document.getElementById("newPrice").value),
+  category:document.getElementById("newCategory").value,
+  image:document.getElementById("newImage").value,
+  rating:5,reviews:0,shop:"Mening do‘konim",
+  sizes:["S","M","L","XL"],description:"Sotuvchi tomonidan joylashtirilgan yangi mahsulot."
+ };
+ if(!product.name||!product.price||!product.image){alert("Barcha maydonlarni to‘ldiring.");return;}
+ products.unshift(product);save();e.target.reset();renderProducts();
+ document.getElementById("sellerCount").textContent=products.length;
+ alert("Mahsulot demo katalogiga qo‘shildi.");
+});
+document.getElementById("profileOverlay").addEventListener("click",e=>{if(e.target.id==="profileOverlay")e.target.classList.remove("show")});
+renderCategories();
+renderProducts();
+</script>
+</body>
+</html>
